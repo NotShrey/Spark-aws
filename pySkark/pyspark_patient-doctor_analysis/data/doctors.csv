@@ -1,0 +1,6 @@
+doctor_id,doctor_name,specialization,experience_years,units_prescribed
+D001,Dr. A Kumar,Cardiologist,15,120
+D002,Dr. B Mehta,Neurologist,10,200
+D003,Dr. C Rao,Dermatologist,8,150
+D004,Dr. D Roy,Oncologist,12,180
+D005,Dr. E Gupta,Pediatrician,6,90

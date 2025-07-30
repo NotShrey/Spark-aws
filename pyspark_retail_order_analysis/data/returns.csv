@@ -1,0 +1,4 @@
+order_id,return_date,return_reason
+O0002,2023-01-10,Wrong Item
+O0005,2023-01-26,Defective
+O0009,2023-02-08,Late Delivery

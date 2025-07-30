@@ -1,0 +1,6 @@
+[PASS] load_data
+[PASS] clean_trips
+[PASS] convert_unix_to_date
+[PASS] calculate_avg_fare_per_km
+[PASS] join_with_driver
+[PASS] top_n_earning_drivers

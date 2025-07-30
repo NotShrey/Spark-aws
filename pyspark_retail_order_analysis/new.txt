@@ -1,0 +1,217 @@
+Case Study: Retail Orders Analytics – Sales Insights and Returns Processing
+📌 Business Problem Statement
+You are working as a data engineer for a retail e-commerce company that maintains detailed records of customer orders and returns. The company wants to gain insights such as:
+
+Region-wise and category-wise sales
+
+Revenue trends over time
+
+Customer behavior (returns, high spenders, etc.)
+
+Product-level analytics
+
+Your task is to:
+
+Load and clean order and return datasets
+
+Perform analytical aggregations
+
+Join orders with return information
+
+Provide meaningful metrics to the business team
+
+📂 Dataset Context
+1. orders.csv
+Represents all product orders:
+
+order_id	customer_id	order_date	category	sub_category	region	quantity	unit_price	status
+O1	C1	2024-01-10	Electronics	Mobile	North	2	500.0	Delivered
+O2	C2	2024-01-15	Books	Fiction	South	3	150.0	Returned
+
+status: Delivered or Returned
+
+unit_price: Price per unit of product
+
+2. returns.csv
+Contains returned orders:
+
+order_id	return_reason
+O2	Damaged
+
+🔁 Implementation Flow and Expectations
+✅ Step 1: Load Order Data
+Function: load_orders_data(spark, path)
+
+Read orders.csv using spark.read.option("header", True).csv(path)
+
+Inference schema for simplicity
+
+🔽 Expected: A DataFrame with 9 columns from orders.csv
+
+✅ Step 2: Load Orders with Schema
+Function: load_orders_data_with_schema(spark, path)
+
+Define schema explicitly using StructType
+
+Ensure order_date is parsed as DateType
+
+🔽 Expected: Clean DataFrame with proper data types
+
+✅ Step 3: Create Sample Orders
+Function: create_sample_orders(spark)
+
+Create sample DataFrame using spark.createDataFrame()
+
+Useful for testing without file access
+
+✅ Step 4: Add Total Price Column
+Function: add_total_price(df)
+
+Compute total_price = quantity * unit_price
+
+✅ Step 5: Filter Delivered Orders
+Function: filter_delivered_orders(df)
+
+Return only rows where status == 'Delivered'
+
+✅ Step 6: Drop Unnecessary Columns
+Function: drop_status_column(df)
+
+Remove the status column for finalized views
+
+✅ Step 7: Rename Columns
+Function: rename_customer_id(df)
+
+Rename customer_id to cust_id
+
+✅ Step 8: Cast Quantity to Double
+Function: cast_quantity_to_double(df)
+
+Change quantity column to DoubleType
+
+✅ Step 9: Unique Categories
+Function: list_unique_categories(df)
+
+Return a Python list of unique category values
+
+✅ Step 10: Total Quantity per Region
+Function: total_quantity_by_region(df)
+
+Group by region, sum the quantity
+
+✅ Step 11: Max Unit Price per Category
+Function: max_price_by_category(df)
+
+Group by category, get maximum unit_price
+
+✅ Step 12: Top Categories by Revenue
+Function: top_categories_by_revenue(df)
+
+Compute total revenue per category
+
+Sort DESC, limit top 3
+
+🔁 Anti-cheat Check: Must use .orderBy(desc(...)).limit(...)
+
+✅ Step 13: Orders After Date
+Function: filter_orders_after_date(df, date_str)
+
+Filter rows where order_date > date_str
+
+✅ Step 14: Yearly Revenue
+Function: yearly_revenue(df)
+
+Extract year from order_date
+
+Group by year, sum total revenue
+
+✅ Step 15: Remove Duplicates
+Function: remove_duplicate_orders(df)
+
+Remove duplicate order_id entries
+
+
+✅ Step 16: Category-Region Count
+Function: category_region_count(df)
+
+Group by category, region, count rows
+
+
+
+✅ Step 17: Join with Returns
+Function: join_with_returns(df, returns_df)
+
+Left join on order_id
+
+✅ Step 18: Large Quantity Orders
+Function: filter_large_orders(df)
+
+Filter rows where quantity > 10
+
+✅ Step 19: Handle Null Prices
+Function: replace_null_prices(df)
+
+Fill null values in unit_price with 0.0
+
+🔁 Anti-cheat Check: Must use .fillna(...)
+
+✅ Step 20: Average Price per Category
+Function: average_price_per_category(df)
+
+Group by category, compute average of unit_price
+
+✅ Step 21: Filter by Region and Category
+Function: filter_north_electronics(df)
+
+Filter where region = 'North' and category = 'Electronics'
+
+✅ Step 22: Count by Status
+Function: count_status_types(df)
+
+Count number of orders in each status group
+
+✅ Step 23: Most Common Sub-category
+Function: most_common_sub_category(df)
+
+Return the most frequent sub-category as str
+
+✅ Step 24: Revenue by Sub-category (Tuple)
+Function: revenue_by_sub_category(df, target)
+
+Filter by sub-category
+
+Return tuple: (target, int revenue)
+
+✅ Step 25: Null Count by Column
+Function: null_count(df)
+
+Count nulls for each column
+
+✅ Step 26: Earliest Order ID
+Function: earliest_order(df)
+
+Get order_id with earliest order_date
+
+✅ Step 27: Filter Orders by Year
+Function: remove_orders_before_year(df, year_threshold)
+
+Keep orders on/after given year
+
+✅ Step 28: Revenue per Customer
+Function: revenue_by_customer(df)
+
+Group by customer_id, sum total_price
+
+✅ Step 29: Group by Category & Region
+Function: quantity_price_by_category_region(df)
+
+Group by both category and region
+
+Aggregate: total quantity, average price
+
+✅ Step 30: Highest Value Order
+Function: highest_value_order(df)
+
+Return order_id with highest total_price
+
+🔁 Anti-cheat Check: Must use .orderBy(desc(...)).limit(1)

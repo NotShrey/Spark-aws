@@ -1,0 +1,7 @@
+user_id,name,age,subscription_type
+u1,Alice,28,Premium
+u2,Bob,34,Standard
+u3,Charlie,22,Free
+u4,David,45,Premium
+u5,Eve,31,Standard
+

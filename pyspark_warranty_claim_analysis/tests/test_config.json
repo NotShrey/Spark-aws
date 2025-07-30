@@ -1,0 +1,52 @@
+[
+    {
+        "function": "load_warranty_data",
+        "args": ["spark"],
+        "expected": "DataFrame"
+    },
+    {
+        "function": "add_resolution_days",
+        "args": ["load_warranty_data"],
+        "expected": "DataFrame"
+    },
+    {
+        "function": "filter_long_resolution",
+        "args": ["add_resolution_days"],
+        "expected": "DataFrame"
+    },
+    {
+        "function": "product_with_highest_avg_resolution",
+        "args": ["add_resolution_days"],
+        "expected": "DataFrame"
+    },
+    {
+        "function": "top_issue_in_delays",
+        "args": ["add_resolution_days"],
+        "expected": "DataFrame"
+    },
+    {
+        "function": "delayed_claim_ratio",
+        "args": ["add_resolution_days"],
+        "expected": "float"
+    },
+    {
+        "function": "add_claim_month",
+        "args": ["add_resolution_days"],
+        "expected": "DataFrame"
+    },
+    {
+        "function": "count_claims_per_product",
+        "args": ["add_resolution_days"],
+        "expected": "DataFrame"
+    },
+    {
+        "function": "avg_resolution_per_issue",
+        "args": ["add_resolution_days"],
+        "expected": "DataFrame"
+    },
+    {
+        "function": "flag_fast_resolution",
+        "args": ["add_resolution_days"],
+        "expected": "DataFrame"
+    }
+]

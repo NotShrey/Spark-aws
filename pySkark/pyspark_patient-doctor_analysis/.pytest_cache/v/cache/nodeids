@@ -1,0 +1,7 @@
+[
+  "tests/test_from_config.py::test_from_config[test_case0]",
+  "tests/test_from_config.py::test_from_config[test_case1]",
+  "tests/test_from_config.py::test_from_config[test_case2]",
+  "tests/test_from_config.py::test_from_config[test_case3]",
+  "tests/test_from_config.py::test_from_config[test_case4]"
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "function": "create_patient_df",
+    "args": ["spark", "data/patients.csv"],
+    "expected": "DataFrame"
+  },
+  {
+    "function": "create_doctor_df",
+    "args": ["spark", "data/doctors.csv"],
+    "expected": "DataFrame"
+  },
+  {
+    "function": "join_patient_doctor_df",
+    "args": ["df", "df2"],
+    "expected": "DataFrame"
+  },
+  {
+    "function": "group_by_units_received_sum",
+    "args": ["df"],
+    "expected": "DataFrame"
+  },
+  {
+    "function": "group_by_patient_count",
+    "args": ["df"],
+    "expected": "DataFrame"
+  }
+]
+

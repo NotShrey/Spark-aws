@@ -1,0 +1,105 @@
+[
+  {
+    "function": "create_watch_history_df",
+    "args": {
+      "spark": "__spark__",
+      "path": "data/watch_history.csv"
+    },
+    "check_schema": true,
+    "expected_schema": [
+      ["user_id", "string"],
+      ["show_id", "string"],
+      ["genre", "string"],
+      ["watch_duration", "int"],
+      ["watch_timestamp", "string"],
+      ["watch_date", "date"]
+    ]
+  },
+  {
+    "function": "create_user_df",
+    "args": {
+      "spark": "__spark__",
+      "path": "data/users.csv"
+    },
+    "check_schema": true,
+    "expected_schema": [
+      ["user_id", "string"],
+      ["name", "string"],
+      ["age", "int"],
+      ["subscription_type", "string"]
+    ]
+  },
+  {
+    "function": "join_user_watch_df",
+    "args": {
+      "watch_df": "__result__.0",
+      "user_df": "__result__.1"
+    },
+    "check_schema": true,
+    "expected_schema": [
+      ["user_id", "string"],
+      ["show_id", "string"],
+      ["genre", "string"],
+      ["watch_duration", "int"],
+      ["watch_timestamp", "string"],
+      ["watch_date", "date"],
+      ["name", "string"],
+      ["age", "int"],
+      ["subscription_type", "string"]
+    ]
+  },
+  {
+    "function": "compute_avg_watch_duration",
+    "args": {
+      "watch_df": "__result__.0"
+    },
+    "check_schema": true,
+    "expected_schema": [
+      ["user_id", "string"],
+      ["avg_watch_duration", "double"]
+    ]
+  },
+  {
+    "function": "categorize_watchers",
+    "args": {
+      "watch_df": "__result__.0"
+    },
+    "check_schema": true,
+    "expected_schema": [
+      ["user_id", "string"],
+      ["show_id", "string"],
+      ["genre", "string"],
+      ["watch_duration", "int"],
+      ["watch_timestamp", "string"],
+      ["watch_date", "date"],
+      ["watch_category", "string"]
+    ]
+  },
+  {
+    "function": "get_unique_genres",
+    "args": {
+      "watch_df": "__result__.0"
+    },
+    "expected": "list"
+  },
+  {
+    "function": "filter_frequent_users",
+    "args": {
+      "watch_df": "__result__.0",
+      "min_watches": 2
+    },
+    "check_schema": true,
+    "expected_schema": [
+      ["user_id", "string"],
+      ["watch_count", "bigint"]
+    ]
+  },
+  {
+    "function": "most_watched_genre",
+    "args": {
+      "watch_df": "__result__.0"
+    },
+    "expected": "str"
+  }
+]
+
